@@ -1,0 +1,16 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "main": "searchYoutube.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/jquery": "^3.5.32",
+    "@types/node": "^22.15.21",
+    "dotenv": "^16.5.0"
+  }
+}

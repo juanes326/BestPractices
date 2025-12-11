@@ -1,0 +1,70 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-lock.yaml
+
+# Playwright and test artifacts
+playwright-report/
+test-results/
+Screenshots/
+tests/Screenshots/
+playwright-report-*/
+.playwright/
+*.trace
+*.zip
+.copilot/
+html/
+       
+
+# Playwright traces/reports
+html/playwright-report/
+
+# Logs and coverage
+logs/
+*.log
+coverage/
+.nyc_output/
+
+# Build outputs
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Other
+*.pem
+*.key
+*.crt
+
+# OneDrive/temp
+~$*
+
+# Ignore local test uploads
+tests/Uploads/
+
+# Windows-specific
+ehthumbs.db
+
+# Keep package manager lockfiles if you prefer them tracked; otherwise ignore
+# Uncomment to ignore yarn/pnpm lockfiles
+# yarn.lock
+# .pnpm-lock.yaml
