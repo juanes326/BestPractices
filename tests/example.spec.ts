@@ -34,6 +34,7 @@ test('Test Case 1', async ({ page }) => {
 test('Test Case 2', async ({ page }) => {
   await page.goto('https://www.mercadolibre.com.co')
   await page.getByRole('link', {name: 'Mis compras'}).click();
+  await page.getByTestId()
   await page.waitForTimeout(5000);
 });
 
