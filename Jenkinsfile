@@ -3,13 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clonar repositorio') {
-            steps {
-                git url: 'https://github.com/juanes326/BestPractices.git',
-                    branch: 'main'
-            }
-        }
-
         stage('Instalar dependencias') {
             steps {
                 bat 'npm install'
@@ -24,18 +17,16 @@ pipeline {
 
         stage('Ejecutar tests') {
             steps {
+                // Tus dos test específicos
                 bat 'npx playwright test tests/example.spec.ts:3 tests/example.spec.ts:10'
             }
         }
     }
 
     post {
-    always {
-        echo 'Publicando reportes de Playwright...'
-        
-        // Artefactos
-        archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
-        
+        always {
+            echo 'Publicando reportes de Playwright...'
+            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
         }
     }
 }
