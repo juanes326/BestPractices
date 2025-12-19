@@ -1,24 +1,21 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:v1.48.2-jammy'
+            args '-u root'
+        }
+    }
 
     stages {
-
         stage('Instalar dependencias') {
             steps {
-                bat 'npm install'
-            }
-        }
-
-        stage('Instalar browsers') {
-            steps {
-                bat 'npx playwright install'
+                sh 'npm ci || npm install'
             }
         }
 
         stage('Ejecutar tests') {
             steps {
-                // Tus dos test específicos
-                bat 'npx playwright test tests/example.spec.ts:3 tests/example.spec.ts:10'
+                sh 'npx playwright test tests/example.spec.ts:3 tests/example.spec.ts:10'
             }
         }
     }
