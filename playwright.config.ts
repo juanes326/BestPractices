@@ -27,7 +27,7 @@ export default defineConfig({
   use: {
 
     screenshot: 'only-on-failure',
-    headless: false,
+    headless: true,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 

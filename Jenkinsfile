@@ -33,7 +33,7 @@ pipeline {
         stage('Ejecutar tests') {
             steps {
                 script {
-                    def cmd = 'npx playwright test tests/example.spec.ts:3 tests/example.spec.ts:10'
+                    def cmd = 'npx playwright test tests/example.spec.ts:3 tests/example.spec.ts:10 --headless'
                     if (isUnix()) {
                         sh cmd
                     } else {
