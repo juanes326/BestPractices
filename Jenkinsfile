@@ -1,21 +1,45 @@
 pipeline {
-    agent {
-        docker {
-            image 'mcr.microsoft.com/playwright:v1.48.2-jammy'
-            args '-u root'
-        }
+    agent any
+
+    environment {
+        CI = 'true'
     }
 
     stages {
         stage('Instalar dependencias') {
             steps {
-                sh 'npm ci || npm install'
+                script {
+                    if (isUnix()) {
+                        sh 'npm install'
+                    } else {
+                        bat 'npm install'
+                    }
+                }
+            }
+        }
+
+        stage('Instalar browsers') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'npx playwright install'
+                    } else {
+                        bat 'npx playwright install'
+                    }
+                }
             }
         }
 
         stage('Ejecutar tests') {
             steps {
-                sh 'npx playwright test tests/example.spec.ts:3 tests/example.spec.ts:10'
+                script {
+                    def cmd = 'npx playwright test tests/example.spec.ts:3 tests/example.spec.ts:10'
+                    if (isUnix()) {
+                        sh cmd
+                    } else {
+                        bat cmd
+                    }
+                }
             }
         }
     }
@@ -23,7 +47,7 @@ pipeline {
     post {
         always {
             echo 'Publicando reportes de Playwright...'
-            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+            archiveArtifacts artifacts: 'playwright-report/**', onlyIfSuccessful: false
         }
     }
 }
