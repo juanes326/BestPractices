@@ -1,22 +1,4 @@
-import { test, expect } from '@playwright/test';
-
-//aqui empieza el test con jenkins
-test('@smoke has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
-
-test('@smoke get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+import test from "@playwright/test";
 
 test('@regression Verify an item in Mis Compras', async ({ page }) => {
   await page.goto('https://www.mercadolibre.com.co')
