@@ -8,7 +8,7 @@ test('@smoke has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 });
 
-test('@regression get started link', async ({ page }) => {
+test('@smoke get started link', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
   // Click the get started link.
@@ -18,11 +18,11 @@ test('@regression get started link', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
 });
 
-test('Test Case 1', async ({ page }) => {
+test('@regression Verify an item in Mis Compras', async ({ page }) => {
   await page.goto('https://www.mercadolibre.com.co')
   await page.locator('input[id=\'cb1-edit\']').fill('iphone 14 pro max')
   await page.keyboard.press('Enter')
-  expect(page.locator('//ol[contains(@class, \'ui-search-layout\')]')).toBeVisible
+  await page.locator('//ol[contains(@class, \'ui-search-layout\')]').waitFor({ state: 'visible' })
   const titles = await page.locator('//ol[contains(@class, \'ui-search-layout__item\')]//li//h3').allInnerTexts()
   console.log('The total number of results was: ', titles.length)
   for (let title of titles)
@@ -32,13 +32,14 @@ test('Test Case 1', async ({ page }) => {
   await page.waitForTimeout(5000);
 });
 
-test('Test Case 2', async ({ page }) => {
-  await page.goto('https://www.mercadolibre.com.co')
-  await page.getByRole('link', {name: 'Mis compras'}).click();
-  await page.waitForTimeout(5000);
+test('smoke Click Mis Compras', async ({ page }) => {
+  await page.goto('https://www.mercadolibre.com.co');
+  const misCompras = page.getByRole('link', { name: 'Mis compras', exact: true });
+  await misCompras.waitFor({ state: 'visible' });
+  await misCompras.click();
 });
 
-test('Purchase an item', async ({ page }) => {
+test('@regression Purchase an item', async ({ page }) => {
   await page.goto('https://www.saucedemo.com')
 
   const UserName = page.locator('input[id=\'user-name\']')
