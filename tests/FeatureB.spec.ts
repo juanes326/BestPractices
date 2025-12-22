@@ -14,7 +14,7 @@ test('@regression Verify an item in Mis Compras', async ({ page }) => {
   await page.waitForTimeout(5000);
 });
 
-test('smoke Click Mis Compras', async ({ page }) => {
+test('@smoke Click Mis Compras', async ({ page }) => {
   await page.goto('https://www.mercadolibre.com.co');
   const misCompras = page.getByRole('link', { name: 'Mis compras', exact: true });
   await misCompras.waitFor({ state: 'visible' });
